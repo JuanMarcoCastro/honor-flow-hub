@@ -16,6 +16,7 @@ import Tesoreria from "./pages/donor/Tesoreria";
 import LibroBlanco from "./pages/donor/LibroBlanco";
 import ReceptorDashboard from "./pages/receptor/ReceptorDashboard";
 import ReceptorPldAlerts from "./pages/receptor/ReceptorPldAlerts";
+import SatReporting from "./pages/receptor/SatReporting";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ComplianceDashboard from "./pages/admin/ComplianceDashboard";
 import UserManagement from "./pages/admin/UserManagement";
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/tesoreria" element={<ProtectedRoute><Tesoreria /></ProtectedRoute>} />
             <Route path="/libro-blanco" element={<ProtectedRoute><LibroBlanco /></ProtectedRoute>} />
             <Route path="/my-projects" element={<ProtectedRoute><ReceptorDashboard /></ProtectedRoute>} />
+            <Route path="/sat-reporting" element={<ProtectedRoute><SatReporting /></ProtectedRoute>} />
             <Route path="/receptor-pld" element={<ProtectedRoute><ReceptorPldAlerts /></ProtectedRoute>} />
             <Route path="/updates" element={<ProtectedRoute><ReceptorDashboard /></ProtectedRoute>} />
             <Route path="/dispersions" element={<ProtectedRoute><ReceptorDashboard /></ProtectedRoute>} />
