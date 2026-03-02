@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { mockProjects } from '@/data/mockData';
 import { TrendingUp, Users, CreditCard, Eye, Target, RefreshCw, ArrowUpRight, Upload, Banknote } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import LegalAdvisorChat from '@/components/LegalAdvisorChat';
 
 const weeklyData = [
   { day: 'Lun', visits: 45, donations: 12 },
@@ -97,6 +98,7 @@ export default function ReceptorDashboard() {
           </div>
         </motion.button>
       </div>
+      <LegalAdvisorChat />
     </div>
   );
 }
