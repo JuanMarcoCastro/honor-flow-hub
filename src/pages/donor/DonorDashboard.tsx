@@ -4,6 +4,7 @@ import { mockDonations, mockProjects, donationsByMonth } from '@/data/mockData';
 import { TrendingUp, Users, Star, Target, ArrowUpRight } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { useEffect, useState } from 'react';
+import LegalAdvisorChat from '@/components/LegalAdvisorChat';
 
 function AnimatedNumber({ value, prefix = '' }: { value: number; prefix?: string }) {
   const [display, setDisplay] = useState(0);
@@ -142,6 +143,7 @@ export default function DonorDashboard() {
           </div>
         </motion.div>
       </div>
+      <LegalAdvisorChat />
     </div>
   );
 }
