@@ -54,7 +54,7 @@ export default function Auth() {
         className="relative z-10 text-center mb-8"
       >
         <div className="flex items-center justify-center gap-3 mb-4">
-          <img src={logoImg} alt="CashedHub" className="w-14 h-14 object-contain" />
+          <img src={logoImg} alt="CashedHub" className="w-28 h-28 object-contain" />
         </div>
         <h1 className="text-5xl font-bold text-gradient-green mb-2">CashedHub</h1>
         <p className="text-muted-foreground text-lg">Transparencia social que transforma</p>
