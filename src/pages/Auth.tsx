@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth, UserRole } from '@/contexts/AuthContext';
-import { Zap, Heart, Building2, Shield, Mail, Lock, User, Loader2 } from 'lucide-react';
+import { Heart, Building2, Mail, Lock, User, Loader2 } from 'lucide-react';
+import logoImg from '@/assets/logo-cashedhub.png';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -53,11 +54,9 @@ export default function Auth() {
         className="relative z-10 text-center mb-8"
       >
         <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center glow-green">
-            <Zap className="w-8 h-8 text-primary-foreground" />
-          </div>
+          <img src={logoImg} alt="CashedHub" className="w-14 h-14 object-contain" />
         </div>
-        <h1 className="text-5xl font-bold text-gradient-green mb-2">Cashed</h1>
+        <h1 className="text-5xl font-bold text-gradient-green mb-2">CashedHub</h1>
         <p className="text-muted-foreground text-lg">Transparencia social que transforma</p>
       </motion.div>
 
