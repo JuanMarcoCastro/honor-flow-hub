@@ -3,10 +3,11 @@ import { useAuth } from '@/contexts/AuthContext';
 import {
   LayoutDashboard, Search, Heart, Calendar, BookOpen, GraduationCap,
   Gift, Shield, FileText, TrendingUp, AlertTriangle, Receipt,
-  FolderOpen, Upload, Banknote, LogOut, ChevronLeft, Zap
+  FolderOpen, Upload, Banknote, LogOut, ChevronLeft
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import logoImg from '@/assets/logo-cashedhub.png';
 
 interface NavItem {
   title: string;
@@ -63,16 +64,12 @@ export function AppSidebar() {
       <div className="p-4 flex items-center justify-between border-b border-border/50">
         {!collapsed && (
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center glow-green-sm">
-              <Zap className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-lg text-gradient-green">Cashed</span>
+            <img src={logoImg} alt="CashedHub" className="w-8 h-8 object-contain" />
+            <span className="font-bold text-lg text-gradient-green">CashedHub</span>
           </div>
         )}
         {collapsed && (
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center glow-green-sm mx-auto">
-            <Zap className="w-5 h-5 text-primary-foreground" />
-          </div>
+          <img src={logoImg} alt="CashedHub" className="w-8 h-8 object-contain mx-auto" />
         )}
         <button onClick={() => setCollapsed(!collapsed)} className={cn("text-muted-foreground hover:text-foreground transition-colors", collapsed && "mx-auto mt-2")}>
           <ChevronLeft className={cn("w-4 h-4 transition-transform", collapsed && "rotate-180")} />
