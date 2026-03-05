@@ -30,7 +30,7 @@ const queryClient = new QueryClient();
 function DashboardRouter() {
   const { user } = useAuth();
   if (!user) return <Navigate to="/auth" replace />;
-  if (user.role === 'donor') return <Navigate to="/expedientes" replace />;
+  if (user.role === 'donor') return <DonorDashboard />;
   if (user.role === 'receptor') return <ReceptorDashboard />;
   return <AdminDashboard />;
 }
@@ -47,13 +47,16 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 function AuthGuard() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, user } = useAuth();
   if (isLoading) return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <Loader2 className="w-8 h-8 animate-spin text-primary" />
     </div>
   );
-  if (isAuthenticated) return <Navigate to="/dashboard" replace />;
+  if (isAuthenticated) {
+    if (user?.role === 'donor') return <Navigate to="/expedientes" replace />;
+    return <Navigate to="/dashboard" replace />;
+  }
   return <Auth />;
 }
 
@@ -64,26 +67,26 @@ const App = () => (
       <Sonner />
       <AuthProvider>
         <DonationProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<AuthGuard />} />
-            <Route path="/auth" element={<AuthGuard />} />
-            <Route path="/dashboard" element={<ProtectedRoute><DashboardRouter /></ProtectedRoute>} />
-            <Route path="/explore" element={<ProtectedRoute><ExploreProjects /></ProtectedRoute>} />
-            <Route path="/project/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
-            <Route path="/expedientes" element={<ProtectedRoute><Expedientes /></ProtectedRoute>} />
-            <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
-            <Route path="/servicio-social" element={<ProtectedRoute><ServicioSocial /></ProtectedRoute>} />
-            <Route path="/tesoreria" element={<ProtectedRoute><Tesoreria /></ProtectedRoute>} />
-            <Route path="/libro-blanco" element={<ProtectedRoute><LibroBlanco /></ProtectedRoute>} />
-            <Route path="/sat-reporting" element={<ProtectedRoute><SatReporting /></ProtectedRoute>} />
-            <Route path="/receptor-pld" element={<ProtectedRoute><ReceptorPldAlerts /></ProtectedRoute>} />
-            <Route path="/compliance" element={<ProtectedRoute><ComplianceDashboard /></ProtectedRoute>} />
-            <Route path="/users" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
-            <Route path="/legal" element={<ProtectedRoute><LegalCompliance /></ProtectedRoute>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<AuthGuard />} />
+              <Route path="/auth" element={<AuthGuard />} />
+              <Route path="/dashboard" element={<ProtectedRoute><DashboardRouter /></ProtectedRoute>} />
+              <Route path="/explore" element={<ProtectedRoute><ExploreProjects /></ProtectedRoute>} />
+              <Route path="/project/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
+              <Route path="/expedientes" element={<ProtectedRoute><Expedientes /></ProtectedRoute>} />
+              <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+              <Route path="/servicio-social" element={<ProtectedRoute><ServicioSocial /></ProtectedRoute>} />
+              <Route path="/tesoreria" element={<ProtectedRoute><Tesoreria /></ProtectedRoute>} />
+              <Route path="/libro-blanco" element={<ProtectedRoute><LibroBlanco /></ProtectedRoute>} />
+              <Route path="/sat-reporting" element={<ProtectedRoute><SatReporting /></ProtectedRoute>} />
+              <Route path="/receptor-pld" element={<ProtectedRoute><ReceptorPldAlerts /></ProtectedRoute>} />
+              <Route path="/compliance" element={<ProtectedRoute><ComplianceDashboard /></ProtectedRoute>} />
+              <Route path="/users" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
+              <Route path="/legal" element={<ProtectedRoute><LegalCompliance /></ProtectedRoute>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
         </DonationProvider>
       </AuthProvider>
     </TooltipProvider>
