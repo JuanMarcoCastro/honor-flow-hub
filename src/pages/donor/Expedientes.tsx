@@ -2,18 +2,25 @@ import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-mo
 import { mockProjects } from '@/data/mockData';
 import { useState, useCallback } from 'react';
 import { Heart, X, Zap, MapPin, BadgeCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Expedientes() {
   const [cards, setCards] = useState([...mockProjects].reverse());
   const [lastAction, setLastAction] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const removeTop = useCallback((action: 'match' | 'skip' | 'super') => {
-    setLastAction(action === 'match' ? '💚 Match!' : action === 'super' ? '⚡ Súper Apoyo!' : '⏭️ Siguiente');
+    if (action === 'super') {
+      const topCard = cards[cards.length - 1];
+      if (topCard) navigate(`/project/${topCard.id}`);
+      return;
+    }
+    setLastAction(action === 'match' ? '💚 Match!' : '⏭️ Siguiente');
     setTimeout(() => {
       setCards(prev => prev.slice(0, -1));
       setLastAction(null);
     }, 400);
-  }, []);
+  }, [cards, navigate]);
 
   return (
     <div className="space-y-6">

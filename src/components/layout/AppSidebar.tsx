@@ -16,9 +16,9 @@ interface NavItem {
 }
 
 const donorNav: NavItem[] = [
+  { title: 'Expedientes', url: '/expedientes', icon: Heart },
   { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard },
   { title: 'Explorar', url: '/explore', icon: Search },
-  { title: 'Expedientes', url: '/expedientes', icon: Heart },
   { title: 'Eventos', url: '/events', icon: Calendar },
   { title: 'Servicio Social', url: '/servicio-social', icon: GraduationCap },
   { title: 'La Tesorería', url: '/tesoreria', icon: Gift },
